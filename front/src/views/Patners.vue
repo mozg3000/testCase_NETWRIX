@@ -5,7 +5,10 @@
       Loading ...
     </div>
     <div v-else >
-      <PartnersList :partners="partners" class="partner_list"/>
+      <div v-if="partners.length===0">Nothing found</div>
+      <div v-else>
+        <PartnersList :partners="partners" class="partner_list"/>
+      </div>
     </div>
   </div>
 </div>
