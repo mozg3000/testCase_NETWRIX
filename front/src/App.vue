@@ -154,6 +154,9 @@ body {
 .search_selection_state {
   border-left: none;
 }
+.container {
+  margin: 0 auto;
+}
 @media screen and (min-width: 1260px) {
 
   .container {
