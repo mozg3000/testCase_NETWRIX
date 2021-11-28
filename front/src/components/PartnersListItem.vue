@@ -98,4 +98,25 @@ export default {
   color: #354556;
   padding-left: 48px;
 }
+
+@media screen and (max-width: 767px) {
+  .partners_list_item {
+    flex-direction: column;
+    padding: 43px 24px;
+    min-height: 418px;
+  }
+  .list_item_contacts {
+    border-right: none;
+    padding-top: 24px;
+  }
+  .list_item_description {
+    border-bottom: 1px solid rgba(5, 27, 43, 0.14);
+  }
+  .list_item_comment {
+    padding-left: 0;
+  }
+  .container {
+    margin: 0 auto
+  }
+}
 </style>
