@@ -11,7 +11,10 @@
           </p>
           <SearchBox @change="handleSearch($event)"/>
           <div class="search_selectors_group">
-
+            <SearchSelector
+                :options="typeOptions"
+                @changeSelect="handleTypeChange($event)"
+            />
             <div class="select_box_combo">
               <select
                   name="search-country"
@@ -40,22 +43,39 @@
 </template>
 
 <script>
+import {mapMutations, mapActions, mapGetters, mapState} from "vuex";
+
 import SearchBox from "./components/SearchBox";
-import {mapMutations, mapActions, mapGetters} from "vuex";
+import SearchSelector from "./components/SearchSelector";
 
 export default {
   name: 'App',
-  components: {SearchBox},
+  components: {SearchBox, SearchSelector},
+  data: () => ({
+    typeOptions: [
+        'company',
+        'address'
+    ]
+  }),
   computed: {
-    ...mapGetters(['buildQuery'])
+    ...mapGetters(['buildQuery']),
+    ...mapState(['searchType', 'search'])
   },
   methods: {
-    ...mapMutations(['SET_SEARCH']),
+    ...mapMutations(['SET_SEARCH', 'SET_SEARCH_TYPE']),
+    ...mapActions(['fetchPartners']),
     handleSearch(search) {
       this.SET_SEARCH(search);
-      let query = this.buildQuery;
-      window.location.search = query;
-    }
+      // window.location.search = this.buildQuery;
+      this.fetchPartners(this.buildQuery);
+    },
+
+    handleTypeChange(type) {
+      this.SET_SEARCH_TYPE(type);
+      if (this.search) {
+        this.fetchPartners(this.buildQuery);
+      }
+    },
   }
 }
 </script>
@@ -125,19 +145,18 @@ body {
 .search_selectors_group {
   display: flex;
   justify-content: space-between;
-}
-.search_selection {
-  background: rgba(0, 0, 0, 0.0001);
-  border: 2px solid #FFFFFF;
-  box-sizing: border-box;
-  color: white;
-  padding: 12px;
-  border-radius: 2px;
-  opacity: 1;
-  outline: none;
-  width: 209px;
-  font-size: 13px;
-  line-height: 40px;
+}.search_selection {
+   background: rgba(0, 0, 0, 0.0001);
+   border: 2px solid #FFFFFF;
+   box-sizing: border-box;
+   color: white;
+   padding: 12px;
+   border-radius: 2px;
+   opacity: 1;
+   outline: none;
+   width: 209px;
+   font-size: 13px;
+   line-height: 40px;
  }
 .search_selection > option {
   color:#354556;

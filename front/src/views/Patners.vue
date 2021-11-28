@@ -37,7 +37,7 @@ export default {
   mounted() {
     this.fetchPartners(this.buildQuery())
     .then(partners => {
-      console.log(partners);
+      // console.log(partners);
     })
   }
 }

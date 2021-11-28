@@ -22,7 +22,9 @@ export default new Vuex.Store({
         state.search = search;
     },
     SET_SEARCH_TYPE: (state, type) => {
-        state.searchType = type;
+        if (type != undefined) {
+            state.searchType = type;
+        }
     }
   },
   actions: {
@@ -37,7 +39,6 @@ export default new Vuex.Store({
                 if(response && response.status === 200){
                     let partners_list = response.data;
                     commit('SET_PARTNERS', partners_list);
-                    commit('SET_LOADER_STATUS', false);
                     resolve(partners_list);
                 }
                 commit('SET_LOADER_STATUS', false);

@@ -3,10 +3,11 @@
       name="search-type"
       id="search_type_id"
       class="search_selection"
-      @change="$event('change')"
+      :change="handleChange()"
+      v-model="selected"
   >
     <option
-        v-for="(i, option) in options"
+        v-for="(option, i) in options"
         :key="i"
         :value="i"
     >
@@ -16,14 +17,27 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
 export default {
   name: "SearchSelector",
   props: {
-    options: {type: Array, required: true}
+    options: {type: Array, required: true},
+  },
+  data: () => ({
+    selected: 0
+  }),
+  computed: {
+    ...mapState(['searchType'])
+  },
+  methods: {
+    handleChange() {
+      this.$emit('changeSelect', this.options[this.selected])
+    }
   }
 }
 </script>
 
 <style scoped>
+
 
 </style>
