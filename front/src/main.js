@@ -3,8 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+import axios from "axios";
 
+Vue.config.productionTip = false
+axios.defaults.baseURL = 'http://localhost:8000';
 new Vue({
   router,
   store,

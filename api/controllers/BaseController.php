@@ -10,14 +10,14 @@ class BaseController extends \yii\rest\Controller
     /**
      * @inheritdoc
      */
-    public function behaviors(): array
+    public function behaviors()
     {
         $behaviors = parent::behaviors();
         unset($behaviors['authenticator']);
         $behaviors['corsFilter'] = [
             'class' => Cors::class,
             'cors' => [
-                'Origin' => ['http://localhost:8000'],
+                'Origin' => ['http://localhost:8080'],
                 'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
                 'Access-Control-Allow-Credentials' => true,
                 'Access-Control-Max-Age' => 86400,
