@@ -20,11 +20,11 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/app.7565eb74.css',
+        'css/app.5428da8c.css',
     ];
     public $js = [
-        'js/chunk-vendors.c47b0872.js',
-        'js/app.7cced490.js'
+        'js/chunk-vendors.fcfe6fa2.js',
+        'js/app.268a3720.js'
     ];
     public $depends = [
     ];
